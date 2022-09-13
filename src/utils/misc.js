@@ -36,9 +36,9 @@ export const getTokens = async () => {
   let values;
   try {
     values = await AsyncStorage.multiGet([
-      '@sieunDiary_app@userId',
-      '@sieunDiary_app@token',
-      '@sieunDiary_app@refToken',
+      '@scheduler_app@userId',
+      '@scheduler_app@token',
+      '@scheduler_app@refToken',
     ]);
   } catch (e) {
     // read error
