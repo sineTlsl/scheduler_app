@@ -13,7 +13,7 @@ const AuthLogo = () => {
         resizeMode={'contain'}
         style={{
           // width: ,
-          height: 95,
+          height: 80,
         }}
       />
     </View>

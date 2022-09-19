@@ -8,21 +8,17 @@ const validation = (value, rules, form) => {
     switch (rule) {
       case 'isRequired':
         valid = valid && validateRequired(value);
-        // console.log(valid);
         break;
       case 'isEmail':
         valid = valid && validateEmail(value);
-        // console.log(valid);
         break;
       case 'minLenght':
         valid = valid && validateMinLenght(value, rules[rule]);
-        // console.log(valid);
         break;
       case 'confirmPassword':
         valid =
           valid &&
           validateConfirmPassword(value, form[rules.confirmPassword].value);
-        // console.log(valid);
         break;
       default:
         valid = true;

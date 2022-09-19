@@ -133,7 +133,7 @@ class AuthForm extends Component {
 
     for (let key in formCopy) {
       // 로그인이랑 회원가입 구분
-      if (this.state === '로그인') {
+      if (this.state.type === '로그인') {
         if (key !== 'confirmPassword') {
           // 이메일 주소랑 패스워드의 valid가 true일 때 isFormValid가 true가 됨
           isFormValid = isFormValid && formCopy[key].valid;

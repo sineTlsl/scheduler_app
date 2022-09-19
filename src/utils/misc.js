@@ -1,6 +1,7 @@
 export const APIKEY = `AIzaSyB4WHnlC3wFBnvOB4iuBDYz7TYLIMXJq_U`;
 export const SIGNUP = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${APIKEY}`;
 export const SIGNIN = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${APIKEY}`;
+export const REFRESH = `https://securetoken.googleapis.com/v1/token?key=${APIKEY}`;
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -23,7 +24,7 @@ export const setTokens = async (values, callBack) => {
       },
     );
   } catch (e) {
-    // save error
+    //save error
   }
 
   console.log('Done.');
@@ -32,14 +33,16 @@ export const setTokens = async (values, callBack) => {
 /**
  * @returns 저장한 토큰을 불러옴
  */
-export const getTokens = async () => {
+export const getTokens = async callBack => {
   let values;
   try {
     values = await AsyncStorage.multiGet([
       '@scheduler_app@userId',
       '@scheduler_app@token',
       '@scheduler_app@refToken',
-    ]);
+    ]).then(values => {
+      callBack(values);
+    });
   } catch (e) {
     // read error
   }
