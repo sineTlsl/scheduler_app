@@ -99,6 +99,7 @@ const TabNav = () => {
   return (
     <MainScreenTab.Navigator
       tabBarOptions={{
+        keyboardHidesTabBar: true, // 키보드가 생성될 때 탭 바를 가려줌
         showLabel: false,
         activeBackgroundColor: '#296592',
         inactiveBackgroundColor: '#3e7caa',
@@ -106,7 +107,7 @@ const TabNav = () => {
           backgroundColor: '3e7caa',
         },
       }}
-      initialRouteName="Cal"
+      // initialRouteName="Cal"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => TabBarIcon(focused, route.name),
       })}>

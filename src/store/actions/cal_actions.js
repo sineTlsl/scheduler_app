@@ -4,7 +4,7 @@ import {GET_CAL} from '../types';
 import axios from 'axios';
 
 /* 서버에 저장된 Calendar 데이터를 가져오기 위한 함수 */
-export function getCal() {
+export function getCal(User) {
   const request = axios({
     method: 'GET',
     url: 'https://scheduler-app-df3b5-default-rtdb.asia-southeast1.firebasedatabase.app/diary.json',

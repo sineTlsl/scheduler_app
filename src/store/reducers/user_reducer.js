@@ -32,7 +32,7 @@ export default function (state = {}, action) {
         // 기존에 state와 auth를 리턴
         ...state,
         auth: {
-          userId: action.payload.user_id || false,
+          userId: action.payload.user_id || false, // 여기에 할당되는 userId가 파이어베이스에서 제공하는 유저 식별자
           token: action.payload.id_token || false,
           refToken: action.payload.refresh_token || false,
         },

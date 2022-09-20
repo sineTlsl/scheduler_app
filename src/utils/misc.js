@@ -5,6 +5,25 @@ export const REFRESH = `https://securetoken.googleapis.com/v1/token?key=${APIKEY
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import firebase from 'firebase';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyB4WHnlC3wFBnvOB4iuBDYz7TYLIMXJq_U',
+  authDomain: 'scheduler-app-df3b5.firebaseapp.com',
+  databaseURL:
+    'https://scheduler-app-df3b5-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'scheduler-app-df3b5',
+  storageBucket: 'scheduler-app-df3b5.appspot.com',
+  messagingSenderId: '784333974342',
+  appId: '1:784333974342:web:b33a409c9bf5ef209e1347',
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// firebase 스토리지, 데이터베이스
+export const storage = firebase.storage(); // firebase에 있는 스토리지 할당
+export const database = firebase.database(); // firebase에 있는 데이터베이스 할당
+
 /**
  * @param {*} values async 객체로 받아오는 것
  * @param {*} callBack 콜백 함수
