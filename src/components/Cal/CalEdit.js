@@ -36,6 +36,7 @@ class CalEdit extends Component {
             imagePath: params.calData.data.imagePath,
           },
           image: '',
+          userId: params.userId,
         })
       : (this.state = {
           newCal: true,
@@ -48,6 +49,7 @@ class CalEdit extends Component {
             description: '',
             imagePath: '',
           },
+          userId: params.userId,
         });
 
     // newCal이 false이고, imagePath가 존재할 때,
@@ -83,7 +85,7 @@ class CalEdit extends Component {
     // .child: 하위 경로
     storage
       .ref('diaryImage')
-      .child(`index${this.state.calData.id}/image.jpg`) // 스토리지 경로 참조
+      .child(`${this.state.userId}/${this.state.calData.imagePath}/image.jpg`) // 스토리지 경로 참조
       .getDownloadURL()
       .then(url => {
         // 경로에 url 주소가 then 콜백함수로 넘어가게되고, 그 값을 URL로 받아오고,
@@ -101,7 +103,7 @@ class CalEdit extends Component {
         image: response.uri,
       });
     });
-    let imageDir = `diaryImage/index${this.state.calData.id}`;
+    let imageDir = `index${this.state.calData.id}`;
     this.setState(prevState => ({
       calData: {
         ...prevState.calData,
@@ -113,11 +115,12 @@ class CalEdit extends Component {
   /* 삭제 데이터 함수 */
   deleteData = async () => {
     const id = this.state.calData.id;
+    const userId = this.state.userId;
 
-    const databaseDirectory = `diary/${id}`;
+    const databaseDirectory = `diary/${userId}/${id}`;
     const databaseRef = database.ref(databaseDirectory).child('data');
 
-    const storageDirectory = `diaryImage/index${id}`;
+    const storageDirectory = `diaryImage/${userId}/index${id}`;
     const storageRef = storage.ref(storageDirectory).child('image.jpg');
 
     try {
@@ -154,12 +157,13 @@ class CalEdit extends Component {
       isLoading: true,
     });
 
+    const userId = this.state.userId;
     const data = this.state.calData; // 업데이트되는 데이터 값 저장
     const id = data.id;
 
-    const databaseDirectory = `diary/${id}`;
+    const databaseDirectory = `diary/${userId}/${id}`;
     const databaseRef = database.ref(databaseDirectory);
-    const storageDirectory = `diaryImage/index${id}/image.jpg`;
+    const storageDirectory = `diaryImage/${userId}/index${id}/image.jpg`;
 
     try {
       // set(): Realtime Database에 데이터를 쓰기위한 메소드

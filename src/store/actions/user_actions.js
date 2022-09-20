@@ -4,7 +4,7 @@ import {SIGN_IN, SIGN_UP, AUTO_SIGN_IN} from '../types';
 // axios는 브라우저나 서버를 위한 HTTP 클라이언트(요청)이고,
 // 프로미스 형태(결과값이 무엇이든 상관없음)라 비동기작업 후에 콜백
 import axios from 'axios';
-import {SIGNUP, SIGNIN, REFRESH} from '../../utils/misc';
+import {SIGNUP, SIGNIN, REFRESH, auth} from '../../utils/misc';
 
 /* refToken 값을 인자로 받아와서 body payload로 담아서 request를 해줄 Action Creators */
 export const autoSignIn = refToken => {
@@ -32,11 +32,22 @@ export const autoSignIn = refToken => {
   };
 };
 
+firebaseLogin = async (email, password) => {
+  try {
+    let user = await auth.signInWithEmailAndPassword(email, password); // 로그인 정보가 담겨있음
+    console.warn('User: ', user);
+  } catch (err) {
+    console.warn('Error: ', error);
+  }
+};
+
 /*
  * action Creator - signIn()
  * @returns 액션 크리에이터는 액션을 반환해줌
  */
 export function signIn(data) {
+  firebaseLogin(data.email, data.password);
+
   const request = axios({
     method: 'POST',
     url: SIGNIN,

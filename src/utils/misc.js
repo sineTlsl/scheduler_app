@@ -23,6 +23,7 @@ firebase.initializeApp(firebaseConfig);
 // firebase 스토리지, 데이터베이스
 export const storage = firebase.storage(); // firebase에 있는 스토리지 할당
 export const database = firebase.database(); // firebase에 있는 데이터베이스 할당
+export const auth = firebase.auth();
 
 /**
  * @param {*} values async 객체로 받아오는 것
@@ -68,4 +69,16 @@ export const getTokens = async callBack => {
 
   // example console.log output:
   // [ ['@MyApp_user', 'myUserValue'], ['@MyApp_key', 'myKeyValue'] ]
+};
+
+export const removeTokens = async callBack => {
+  try {
+    await AsyncStorage.multiRemove([
+      '@scheduler_app@userId',
+      '@scheduler_app@token',
+      '@scheduler_app@refToken',
+    ]).then(() => {
+      callBack();
+    });
+  } catch (e) {}
 };

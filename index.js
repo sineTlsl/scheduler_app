@@ -11,6 +11,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import promiseMiddleware from 'redux-promise';
 import reducers from './src/store/reducers';
+import thunkMiddleware from 'redux-thunk';
 
 // import reducers from './app'
 
@@ -19,7 +20,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const createStoreWithMiddleware = createStore(
   reducers,
-  composeEnhancers(applyMiddleware(promiseMiddleware)),
+  composeEnhancers(applyMiddleware(promiseMiddleware, thunkMiddleware)),
 );
 const appRedux = () => (
   // store 생성. 앱 전체를 store를 prop로 갖는 Provider로 감싸줌

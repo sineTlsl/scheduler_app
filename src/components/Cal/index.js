@@ -9,13 +9,14 @@ import {
   Image,
   Dimensions,
   Button,
+  BackHandler,
 } from 'react-native';
 import TextTruncate from 'react-native-text-truncate';
 
 import {connect} from 'react-redux';
 import {getCal} from '../../store/actions/cal_actions';
 
-import {getTokens} from '../../utils/misc';
+import {getTokens, setTokens, auth, removeTokens} from '../../utils/misc';
 import {autoSignIn} from '../../store/actions/user_actions';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -59,8 +60,12 @@ class Cal extends Component {
         });
       }
     });
+    /* navigation의 물리적인 back 버튼이 disable 됨 */
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
   }
-  renderCal = Cals =>
+  renderCal = (Cals, User) =>
     Cals.documents
       ? // 7개의 데이터를 각각 접근하고, 각각 데이터 출력
         Cals.documents.map((item, index) => (
@@ -73,6 +78,7 @@ class Cal extends Component {
                 calData: item,
                 index: index,
                 id: item.data.id,
+                userId: User.auth.userId,
               });
             }}>
             <View style={styles.CalContainer}>
@@ -141,7 +147,36 @@ class Cal extends Component {
     }
   };
 
+  /* 로그아웃 메소드 */
+  headerStyle = () => {
+    this.props.navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          style={{flexDirection: 'row', paddingRight: 15, paddingBottom: 5}}
+          onPress={() => {
+            auth
+              .signOut()
+              .then(() => {
+                removeTokens(() => {
+                  this.props.navigation.navigate('SignIn');
+                });
+              })
+              .catch(err => {
+                alert('Logout Failed: ', err.message);
+              });
+          }}>
+          <Image
+            source={require('../../assets/images/logout.png')}
+            resizeMode="contain"
+            style={{width: 23, height: 23}}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  };
+
   render() {
+    this.headerStyle();
     return (
       <ImageBackground
         style={styles.imageBg}
@@ -152,7 +187,7 @@ class Cal extends Component {
           {this.state.isAuth ? (
             <ScrollView>
               <View style={{flexDirection: 'column-reverse'}}>
-                {this.renderCal(this.props.Cals)}
+                {this.renderCal(this.props.Cals, this.props.User)}
               </View>
             </ScrollView>
           ) : (
@@ -186,6 +221,7 @@ class Cal extends Component {
                   newCal: true,
                   index: this.props.Cals.documents.length, // length를 이용하면 배열의 개수를 알 수 있음
                   id: this.checkNextID(this.props.Cals),
+                  userId: this.props.User.auth.userId,
                 });
               }}>
               <Image

@@ -2,30 +2,32 @@
 
 import {GET_CAL} from '../types';
 import axios from 'axios';
+import {auth, database} from '../../utils/misc';
 
 /* 서버에 저장된 Calendar 데이터를 가져오기 위한 함수 */
 export function getCal(User) {
-  const request = axios({
-    method: 'GET',
-    url: 'https://scheduler-app-df3b5-default-rtdb.asia-southeast1.firebasedatabase.app/diary.json',
-  })
-    .then(response => {
+  // 만약 로그인이 되어있다면, 파라메터(User)에 firebase가 인식하고 있는 로그인 정보가 들어감
+  // auth.onAuthStateChanged(user => {
+  //   if (user) {
+  //     console.warn('user id is... ' + user);
+  //   } else {
+  //     console.warn('not logged in...');
+  //   }
+  // });
+
+  return dispatch => {
+    const url = `diary/${User.auth.userId}`;
+    database.ref(url).on('value', dataSnapShot => {
+      /* index 번호 정렬 */
       const calData = [];
-      for (let key in response.data) {
-        if (response.data[key]) {
+      for (let key in dataSnapShot.val()) {
+        if (dataSnapShot.val()[key]) {
           calData.push({
-            ...response.data[key],
+            ...dataSnapShot.val()[key],
           });
         }
       }
-      return calData;
-    })
-    .catch(err => {
-      alert('GET FAILD');
-      return false;
+      dispatch({type: GET_CAL, payload: calData});
     });
-  return {
-    type: GET_CAL,
-    payload: request,
   };
 }

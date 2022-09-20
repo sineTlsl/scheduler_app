@@ -10,6 +10,7 @@ import CalEdit from './components/Cal/CalEdit';
 import TodoList from './components/TodoList';
 import TodoEdit from './components/TodoList/TodoEdit';
 import LogoTitle from './utils/logoTitle';
+import Loading from './components/auth/loading';
 
 // Icon import
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -48,6 +49,21 @@ const headerConfig = {
   },
 };
 
+// 헤더 스타일
+const headerConfig_ = {
+  headerTitleAlign: 'center',
+  headerTintColor: '#fff',
+  headerStyle: {
+    backgroundColor: '#3e7caa',
+  },
+  headerImage: <LogoTitle />,
+  headerTitleStyle: {
+    flex: 1,
+    textAlign: 'center',
+  },
+  headerLeft: null,
+};
+
 /*
   Stack Navigator
     - Stack Screen A
@@ -58,15 +74,11 @@ const headerConfig = {
       - Tab Screen C
 */
 
-// true: 다이어리와 뉴스 탭이 있는 Bottom Nav으로 출력.
-// 로그인 여부를 알려줄 Boolean 변수
-const isLoggedIn = false;
-
 /* Calendar에 쓰일 Stack Nav 컴포넌트 */
 const CalNav = () => {
   return (
     <CalStack.Navigator>
-      <CalStack.Screen name="Cal" component={Cal} options={headerConfig} />
+      <CalStack.Screen name="Cal" component={Cal} options={headerConfig_} />
       <CalStack.Screen
         name="CalEdit"
         component={CalEdit}
@@ -83,7 +95,7 @@ const TodoNav = () => {
       <TodoStack.Screen
         name="Todo"
         component={TodoList}
-        options={headerConfig}
+        options={headerConfig_}
       />
       <TodoStack.Screen
         name="TodoEdit"
@@ -130,14 +142,17 @@ const TabNav = () => {
 export const RootNav = () => {
   return (
     <AuthStack.Navigator screenOptions={{headerShown: false}}>
-      {isLoggedIn ? (
-        <AuthStack.Screen name="Main" component={TabNav} />
-      ) : (
-        <>
-          <AuthStack.Screen name="SignIn" component={SignIn} />
-          <AuthStack.Screen name="TabNav" component={TabNav} />
-        </>
-      )}
+      <AuthStack.Screen name="Loading" component={Loading} />
+      <AuthStack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={() => ({gestureEnabled: false})}
+      />
+      <AuthStack.Screen
+        name="TabNav"
+        component={TabNav}
+        options={() => ({gestureEnabled: false})}
+      />
     </AuthStack.Navigator>
   );
 };
