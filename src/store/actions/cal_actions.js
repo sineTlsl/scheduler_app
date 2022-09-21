@@ -16,7 +16,7 @@ export function getCal(User) {
   // });
 
   return dispatch => {
-    const url = `diary/${User.auth.userId}`;
+    const url = `CalendarList/${User.auth.userId}`;
     database.ref(url).on('value', dataSnapShot => {
       /* index 번호 정렬 */
       const calData = [];

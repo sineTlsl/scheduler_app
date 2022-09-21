@@ -8,26 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* scheduler_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* scheduler_appTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-scheduler_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-scheduler_app.a */; };
+		07491C103482D46FC34643B9 /* libPods-scheduler_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-scheduler_app.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-scheduler_app-scheduler_appTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-scheduler_app-scheduler_appTests.a */; };
-		D6EAB79628D45BE4000E4D40 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78528D45BE4000E4D40 /* SimpleLineIcons.ttf */; };
-		D6EAB79828D45BE4000E4D40 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78628D45BE4000E4D40 /* Zocial.ttf */; };
-		D6EAB79A28D45BE4000E4D40 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78728D45BE4000E4D40 /* FontAwesome5_Brands.ttf */; };
-		D6EAB79C28D45BE4000E4D40 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78828D45BE4000E4D40 /* Foundation.ttf */; };
-		D6EAB79E28D45BE4000E4D40 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78928D45BE4000E4D40 /* FontAwesome.ttf */; };
-		D6EAB7A028D45BE4000E4D40 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78A28D45BE4000E4D40 /* MaterialIcons.ttf */; };
-		D6EAB7A228D45BE4000E4D40 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78B28D45BE4000E4D40 /* Octicons.ttf */; };
-		D6EAB7A428D45BE4000E4D40 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78C28D45BE4000E4D40 /* FontAwesome5_Regular.ttf */; };
-		D6EAB7A628D45BE4000E4D40 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78D28D45BE4000E4D40 /* EvilIcons.ttf */; };
-		D6EAB7A828D45BE4000E4D40 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78E28D45BE4000E4D40 /* Entypo.ttf */; };
-		D6EAB7AA28D45BE4000E4D40 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB78F28D45BE4000E4D40 /* MaterialCommunityIcons.ttf */; };
-		D6EAB7AC28D45BE4000E4D40 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB79028D45BE4000E4D40 /* Feather.ttf */; };
-		D6EAB7AE28D45BE4000E4D40 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB79128D45BE4000E4D40 /* Fontisto.ttf */; };
-		D6EAB7B028D45BE4000E4D40 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB79228D45BE4000E4D40 /* AntDesign.ttf */; };
-		D6EAB7B228D45BE4000E4D40 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB79328D45BE4000E4D40 /* Ionicons.ttf */; };
-		D6EAB7B428D45BE4000E4D40 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6EAB79428D45BE4000E4D40 /* FontAwesome5_Solid.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +41,10 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-scheduler_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scheduler_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = scheduler_app/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-scheduler_app-scheduler_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scheduler_app-scheduler_appTests.release.xcconfig"; path = "Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests.release.xcconfig"; sourceTree = "<group>"; };
+		D6BF91BE28DAA0A400EAD00D /* IBMPlexSansKR-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "IBMPlexSansKR-Regular.ttf"; path = "../assets/fonts/IBMPlexSansKR-Regular.ttf"; sourceTree = "<group>"; };
+		D6BF91BF28DAA0A400EAD00D /* BMDoHyeon-OTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BMDoHyeon-OTF.ttf"; path = "../assets/fonts/BMDoHyeon-OTF.ttf"; sourceTree = "<group>"; };
+		D6BF91C028DAA0A400EAD00D /* IBMPlexSansKR-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "IBMPlexSansKR-Light.ttf"; path = "../assets/fonts/IBMPlexSansKR-Light.ttf"; sourceTree = "<group>"; };
+		D6BF91C128DAA0A400EAD00D /* ShadowsIntoLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ShadowsIntoLight.ttf; path = ../assets/fonts/ShadowsIntoLight.ttf; sourceTree = "<group>"; };
 		D6EAB78528D45BE4000E4D40 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		D6EAB78628D45BE4000E4D40 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		D6EAB78728D45BE4000E4D40 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -89,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-scheduler_app.a in Frameworks */,
+				07491C103482D46FC34643B9 /* libPods-scheduler_app.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +170,10 @@
 		D6EAB78428D45B70000E4D40 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				D6BF91BF28DAA0A400EAD00D /* BMDoHyeon-OTF.ttf */,
+				D6BF91C028DAA0A400EAD00D /* IBMPlexSansKR-Light.ttf */,
+				D6BF91BE28DAA0A400EAD00D /* IBMPlexSansKR-Regular.ttf */,
+				D6BF91C128DAA0A400EAD00D /* ShadowsIntoLight.ttf */,
 				D6EAB79228D45BE4000E4D40 /* AntDesign.ttf */,
 				D6EAB78E28D45BE4000E4D40 /* Entypo.ttf */,
 				D6EAB78D28D45BE4000E4D40 /* EvilIcons.ttf */,
@@ -212,9 +204,8 @@
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
 				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				A2DA59819EDC99991C717FE6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,32 +274,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D6EAB79A28D45BE4000E4D40 /* FontAwesome5_Brands.ttf in Resources */,
-				D6EAB7AA28D45BE4000E4D40 /* MaterialCommunityIcons.ttf in Resources */,
-				D6EAB7B028D45BE4000E4D40 /* AntDesign.ttf in Resources */,
-				D6EAB7AC28D45BE4000E4D40 /* Feather.ttf in Resources */,
-				D6EAB79E28D45BE4000E4D40 /* FontAwesome.ttf in Resources */,
-				D6EAB7B228D45BE4000E4D40 /* Ionicons.ttf in Resources */,
-				D6EAB7A428D45BE4000E4D40 /* FontAwesome5_Regular.ttf in Resources */,
-				D6EAB7A828D45BE4000E4D40 /* Entypo.ttf in Resources */,
-				D6EAB7A028D45BE4000E4D40 /* MaterialIcons.ttf in Resources */,
-				D6EAB7B428D45BE4000E4D40 /* FontAwesome5_Solid.ttf in Resources */,
-				D6EAB7A228D45BE4000E4D40 /* Octicons.ttf in Resources */,
-				D6EAB7AE28D45BE4000E4D40 /* Fontisto.ttf in Resources */,
-				D6EAB79C28D45BE4000E4D40 /* Foundation.ttf in Resources */,
-				D6EAB79828D45BE4000E4D40 /* Zocial.ttf in Resources */,
-				D6EAB7A628D45BE4000E4D40 /* EvilIcons.ttf in Resources */,
-				D6EAB79628D45BE4000E4D40 /* SimpleLineIcons.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -341,6 +306,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scheduler_app/Pods-scheduler_app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2DA59819EDC99991C717FE6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -419,23 +401,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scheduler_app/Pods-scheduler_app-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scheduler_app-scheduler_appTests/Pods-scheduler_app-scheduler_appTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {

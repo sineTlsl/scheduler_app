@@ -32,8 +32,10 @@ class CalEdit extends Component {
             id: params.calData.data.id,
             date: params.calData.data.date,
             title: params.calData.data.title,
-            description: params.calData.data.description,
+            memo: params.calData.data.memo,
             imagePath: params.calData.data.imagePath,
+            startTime: params.calData.data.startTime,
+            endTime: params.calData.data.endTime,
           },
           image: '',
           userId: params.userId,
@@ -48,6 +50,8 @@ class CalEdit extends Component {
             title: '',
             description: '',
             imagePath: '',
+            startTime: '',
+            endTime: '',
           },
           userId: params.userId,
         });
@@ -71,11 +75,25 @@ class CalEdit extends Component {
           title: value,
         },
       }));
-    } else if (item === 'description') {
+    } else if (item === 'startTime') {
       this.setState(prevState => ({
         calData: {
           ...prevState.calData,
-          description: value,
+          startTime: value,
+        },
+      }));
+    } else if (item === 'endTime') {
+      this.setState(prevState => ({
+        calData: {
+          ...prevState.calData,
+          endTime: value,
+        },
+      }));
+    } else if (item === 'memo') {
+      this.setState(prevState => ({
+        calData: {
+          ...prevState.calData,
+          memo: value,
         },
       }));
     }
@@ -84,7 +102,7 @@ class CalEdit extends Component {
   getImage = () => {
     // .child: 하위 경로
     storage
-      .ref('diaryImage')
+      .ref('calendarImg')
       .child(`${this.state.userId}/${this.state.calData.imagePath}/image.jpg`) // 스토리지 경로 참조
       .getDownloadURL()
       .then(url => {
@@ -117,10 +135,10 @@ class CalEdit extends Component {
     const id = this.state.calData.id;
     const userId = this.state.userId;
 
-    const databaseDirectory = `diary/${userId}/${id}`;
+    const databaseDirectory = `CalendarList/${userId}/${id}`;
     const databaseRef = database.ref(databaseDirectory).child('data');
 
-    const storageDirectory = `diaryImage/${userId}/index${id}`;
+    const storageDirectory = `calendarImg/${userId}/index${id}`;
     const storageRef = storage.ref(storageDirectory).child('image.jpg');
 
     try {
@@ -161,9 +179,9 @@ class CalEdit extends Component {
     const data = this.state.calData; // 업데이트되는 데이터 값 저장
     const id = data.id;
 
-    const databaseDirectory = `diary/${userId}/${id}`;
+    const databaseDirectory = `CalendarList/${userId}/${id}`;
     const databaseRef = database.ref(databaseDirectory);
-    const storageDirectory = `diaryImage/${userId}/index${id}/image.jpg`;
+    const storageDirectory = `calendarImg/${userId}/index${id}/image.jpg`;
 
     try {
       // set(): Realtime Database에 데이터를 쓰기위한 메소드
@@ -278,26 +296,80 @@ class CalEdit extends Component {
                 )}
               </View>
             </View>
-            <View style={styles.descriptionView}>
-              <Text style={styles.dateText}>Description: &nbsp;</Text>
-              <View style={[styles.dateInputView, styles.descriptionInputView]}>
+            <View style={styles.dateView}>
+              <Text style={styles.dateText}>Start Time: &nbsp;</Text>
+              <View style={styles.dateInputView}>
+                {this.state.newCal ? (
+                  <TextInput
+                    value={this.state.calData.startTime}
+                    style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
+                    placeholder="시작 시간"
+                    placeholderTextColor="#777"
+                    onChangeText={value =>
+                      this.onChangeInput('startTime', value)
+                    }
+                    editable={true}
+                  />
+                ) : (
+                  // 새로운 다이어리 작성이 아닌 경우,
+                  <TextInput
+                    value={this.state.calData.startTime}
+                    style={{
+                      fontSize: 20,
+                      paddingTop: 0,
+                      paddingBottom: 0,
+                      color: 'gray',
+                    }}
+                    editable={false}
+                  />
+                )}
+              </View>
+            </View>
+            <View style={styles.dateView}>
+              <Text style={styles.dateText}>End Time: &nbsp;</Text>
+              <View style={styles.dateInputView}>
+                {this.state.newCal ? (
+                  <TextInput
+                    value={this.state.calData.endTime}
+                    style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
+                    placeholder="종료 시간"
+                    placeholderTextColor="#777"
+                    onChangeText={value => this.onChangeInput('endTime', value)}
+                    editable={true}
+                  />
+                ) : (
+                  // 새로운 다이어리 작성이 아닌 경우,
+                  <TextInput
+                    value={this.state.calData.endTime}
+                    style={{
+                      fontSize: 20,
+                      paddingTop: 0,
+                      paddingBottom: 0,
+                      color: 'gray',
+                    }}
+                    editable={false}
+                  />
+                )}
+              </View>
+            </View>
+            <View style={styles.memoView}>
+              <Text style={styles.dateText}>Memo: &nbsp;</Text>
+              <View style={[styles.dateInputView, styles.memoInputView]}>
                 <ScrollView>
                   {this.state.newCal ? (
                     <TextInput
-                      value={this.state.calData.description}
+                      value={this.state.calData.memo}
                       style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                      placeholder="내용"
+                      placeholder="메모"
                       placeholderTextColor="#777"
-                      onChangeText={value =>
-                        this.onChangeInput('description', value)
-                      }
+                      onChangeText={value => this.onChangeInput('memo', value)}
                       editable={true}
                       multiline={true}
                     />
                   ) : (
                     // 새로운 다이어리 작성이 아닌 경우,
                     <TextInput
-                      value={this.state.calData.description}
+                      value={this.state.calData.memo}
                       style={{
                         fontSize: 20,
                         paddingTop: 0,
@@ -400,6 +472,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   indexText: {
+    fontFamily: 'ShadowsIntoLight',
     fontSize: 23,
     fontWeight: 'bold',
   },
@@ -423,12 +496,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 1,
   },
-  descriptionView: {
+  memoView: {
     flex: 7,
     paddingLeft: 15,
     paddingRight: 15,
   },
-  descriptionInputView: {
+  memoInputView: {
     flex: 0.95,
     marginTop: 5,
   },

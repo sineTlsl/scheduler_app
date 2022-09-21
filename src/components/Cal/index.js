@@ -105,7 +105,7 @@ class Cal extends Component {
                 {item.data.date ? (
                   <View style={styles.dateView}>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Date: &nbsp;
+                      날짜: &nbsp;
                     </Text>
                     <Text style={{fontSize: 16}}>{item.data.date}</Text>
                   </View>
@@ -114,22 +114,38 @@ class Cal extends Component {
                 {item.data.title ? (
                   <View style={styles.dateView}>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Title: &nbsp;
+                      제목: &nbsp;
                     </Text>
                     <Text style={{fontSize: 16}}>{item.data.title}</Text>
                   </View>
                 ) : null}
-
-                {item.data.description ? (
-                  <View style={{paddingTop: 7, paddingLeft: 7}}>
+                {item.data.startTime ? (
+                  <View style={styles.dateView}>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Description: &nbsp;
+                      시작 시간: &nbsp;
                     </Text>
-                    <TextTruncate style={{fontSize: 16}} numberOfLines={2}>
-                      {item.data.description}
-                    </TextTruncate>
+                    <Text style={{fontSize: 16}}>{item.data.startTime}</Text>
                   </View>
                 ) : null}
+                {item.data.endTime ? (
+                  <View style={styles.dateView}>
+                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                      종료 시간: &nbsp;
+                    </Text>
+                    <Text style={{fontSize: 16}}>{item.data.endTime}</Text>
+                  </View>
+                ) : null}
+
+                {/* {item.data.memo ? (
+                  <View style={{paddingTop: 7, paddingLeft: 7}}>
+                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                      Memo: &nbsp;
+                    </Text>
+                    <TextTruncate style={{fontSize: 16}} numberOfLines={2}>
+                      {item.data.memo}
+                    </TextTruncate>
+                  </View>
+                ) : null} */}
               </View>
             </View>
           </TouchableOpacity>
@@ -248,7 +264,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     margin: 10,
     shadowColor: '#cccccc',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: {width: 0, height: 3},
     shadowOpacity: 0.8,
     shadowRadius: 2,
     borderRadius: 2,

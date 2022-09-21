@@ -18,7 +18,6 @@ export const autoSignIn = refToken => {
   })
     .then(response => {
       console.log(response.data);
-      alert('로그인 성공');
       return response.data;
     })
     .catch(err => {
@@ -62,7 +61,6 @@ export function signIn(data) {
   })
     .then(response => {
       console.log(response.data);
-      alert('로그인 성공');
       return response.data;
     })
     .catch(err => {
