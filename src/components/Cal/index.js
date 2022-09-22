@@ -264,10 +264,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     margin: 10,
     shadowColor: '#cccccc',
-    shadowOffset: {width: 0, height: 3},
+    shadowOffset: {width: 3, height: 3},
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    borderRadius: 2,
+    borderRadius: 30,
   },
   container: {
     flex: 1,

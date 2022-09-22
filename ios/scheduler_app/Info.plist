@@ -53,9 +53,9 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>IBMPlexSansKR-Regular.ttf</string>
-		<string>IBMPlexSansKR-Light.ttf</string>
 		<string>BMDoHyeon-OTF.ttf</string>
+		<string>IBMPlexSansKR-Light.ttf</string>
+		<string>IBMPlexSansKR-Regular.ttf</string>
 		<string>ShadowsIntoLight.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>

@@ -239,9 +239,9 @@ class CalEdit extends Component {
         enabled={true}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
-            <View style={styles.indexView}>
+            {/* <View style={styles.indexView}>
               <Text style={styles.indexText}># {this.state.index + 1}</Text>
-            </View>
+            </View> */}
             <View style={styles.dateView}>
               <Text style={styles.dateText}>Date: &nbsp;</Text>
               <View style={styles.dateInputView}>
@@ -269,7 +269,7 @@ class CalEdit extends Component {
                 )}
               </View>
             </View>
-            <View style={styles.dateView}>
+            <View style={styles.TitleView}>
               <Text style={styles.dateText}>Title: &nbsp;</Text>
               <View style={styles.dateInputView}>
                 {this.state.newCal ? (
@@ -296,7 +296,7 @@ class CalEdit extends Component {
                 )}
               </View>
             </View>
-            <View style={styles.dateView}>
+            <View style={styles.TitleView}>
               <Text style={styles.dateText}>Start Time: &nbsp;</Text>
               <View style={styles.dateInputView}>
                 {this.state.newCal ? (
@@ -325,7 +325,7 @@ class CalEdit extends Component {
                 )}
               </View>
             </View>
-            <View style={styles.dateView}>
+            <View style={styles.TitleView}>
               <Text style={styles.dateText}>End Time: &nbsp;</Text>
               <View style={styles.dateInputView}>
                 {this.state.newCal ? (
@@ -480,10 +480,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  TitleView: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
     flexDirection: 'row',
     alignItems: 'baseline',
   },
   dateText: {
+    fontFamily: 'DoHyeon-Regular',
     fontSize: 22,
     fontWeight: 'bold',
   },
@@ -497,7 +506,7 @@ const styles = StyleSheet.create({
     borderRadius: 1,
   },
   memoView: {
-    flex: 7,
+    flex: 2,
     paddingLeft: 15,
     paddingRight: 15,
   },
