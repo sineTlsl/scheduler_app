@@ -77,8 +77,8 @@ const headerConfig_ = {
 /* Calendar에 쓰일 Stack Nav 컴포넌트 */
 const CalNav = () => {
   return (
-    <CalStack.Navigator>
-      <CalStack.Screen name="Cal" component={Cal} options={headerConfig_} />
+    <CalStack.Navigator screenOptions={{headerShown: false}}>
+      <CalStack.Screen name="Cal" component={Cal} />
       <CalStack.Screen
         name="CalEdit"
         component={CalEdit}
@@ -91,7 +91,7 @@ const CalNav = () => {
 /* ToDoList에 쓰일 Stack Nav 컴포넌트 */
 const TodoNav = () => {
   return (
-    <TodoStack.Navigator>
+    <TodoStack.Navigator screenOptions={{headerShown: false}}>
       <TodoStack.Screen
         name="Todo"
         component={TodoList}

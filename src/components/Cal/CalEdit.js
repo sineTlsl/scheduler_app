@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import {
+  ImageBackground,
   StyleSheet,
   View,
   Text,
@@ -13,6 +14,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  SafeAreaView,
 } from 'react-native';
 import {storage, database} from '../../utils/misc';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
@@ -238,222 +240,244 @@ class CalEdit extends Component {
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         enabled={true}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
-            {/* <View style={styles.indexView}>
+          <ImageBackground
+            style={styles.imageBg}
+            source={require('../../assets/images/sky.jpg')}
+            blurRadius={5}
+            imageStyle={{opacity: 0.5}}>
+            <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+              <View style={styles.container}>
+                <Text style={styles.titleText}>SCHEDULER</Text>
+                {/* <View style={styles.indexView}>
               <Text style={styles.indexText}># {this.state.index + 1}</Text>
             </View> */}
-            <View style={styles.dateView}>
-              <Text style={styles.dateText}>Date: &nbsp;</Text>
-              <View style={styles.dateInputView}>
-                {this.state.newCal ? (
-                  <TextInput
-                    value={this.state.calData.date}
-                    style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                    placeholder="날짜"
-                    placeholderTextColor="#777"
-                    onChangeText={value => this.onChangeInput('date', value)}
-                    editable={true}
-                  />
-                ) : (
-                  // 새로운 다이어리 작성이 아닌 경우,
-                  <TextInput
-                    value={this.state.calData.date}
-                    style={{
-                      fontSize: 20,
-                      paddingTop: 0,
-                      paddingBottom: 0,
-                      color: 'gray',
-                    }}
-                    editable={false}
-                  />
-                )}
-              </View>
-            </View>
-            <View style={styles.TitleView}>
-              <Text style={styles.dateText}>Title: &nbsp;</Text>
-              <View style={styles.dateInputView}>
-                {this.state.newCal ? (
-                  <TextInput
-                    value={this.state.calData.title}
-                    style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                    placeholder="제목"
-                    placeholderTextColor="#777"
-                    onChangeText={value => this.onChangeInput('title', value)}
-                    editable={true}
-                  />
-                ) : (
-                  // 새로운 다이어리 작성이 아닌 경우,
-                  <TextInput
-                    value={this.state.calData.title}
-                    style={{
-                      fontSize: 20,
-                      paddingTop: 0,
-                      paddingBottom: 0,
-                      color: 'gray',
-                    }}
-                    editable={false}
-                  />
-                )}
-              </View>
-            </View>
-            <View style={styles.TitleView}>
-              <Text style={styles.dateText}>Start Time: &nbsp;</Text>
-              <View style={styles.dateInputView}>
-                {this.state.newCal ? (
-                  <TextInput
-                    value={this.state.calData.startTime}
-                    style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                    placeholder="시작 시간"
-                    placeholderTextColor="#777"
-                    onChangeText={value =>
-                      this.onChangeInput('startTime', value)
-                    }
-                    editable={true}
-                  />
-                ) : (
-                  // 새로운 다이어리 작성이 아닌 경우,
-                  <TextInput
-                    value={this.state.calData.startTime}
-                    style={{
-                      fontSize: 20,
-                      paddingTop: 0,
-                      paddingBottom: 0,
-                      color: 'gray',
-                    }}
-                    editable={false}
-                  />
-                )}
-              </View>
-            </View>
-            <View style={styles.TitleView}>
-              <Text style={styles.dateText}>End Time: &nbsp;</Text>
-              <View style={styles.dateInputView}>
-                {this.state.newCal ? (
-                  <TextInput
-                    value={this.state.calData.endTime}
-                    style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                    placeholder="종료 시간"
-                    placeholderTextColor="#777"
-                    onChangeText={value => this.onChangeInput('endTime', value)}
-                    editable={true}
-                  />
-                ) : (
-                  // 새로운 다이어리 작성이 아닌 경우,
-                  <TextInput
-                    value={this.state.calData.endTime}
-                    style={{
-                      fontSize: 20,
-                      paddingTop: 0,
-                      paddingBottom: 0,
-                      color: 'gray',
-                    }}
-                    editable={false}
-                  />
-                )}
-              </View>
-            </View>
-            <View style={styles.memoView}>
-              <Text style={styles.dateText}>Memo: &nbsp;</Text>
-              <View style={[styles.dateInputView, styles.memoInputView]}>
-                <ScrollView>
-                  {this.state.newCal ? (
-                    <TextInput
-                      value={this.state.calData.memo}
-                      style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                      placeholder="메모"
-                      placeholderTextColor="#777"
-                      onChangeText={value => this.onChangeInput('memo', value)}
-                      editable={true}
-                      multiline={true}
-                    />
-                  ) : (
-                    // 새로운 다이어리 작성이 아닌 경우,
-                    <TextInput
-                      value={this.state.calData.memo}
-                      style={{
-                        fontSize: 20,
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                        color: 'gray',
-                      }}
-                      editable={false}
-                      multiline={true}
-                    />
-                  )}
-                </ScrollView>
-              </View>
-            </View>
-            <View style={styles.imageView}>
-              <View style={{flex: 10, paddingRight: 15}}>
-                <Text style={styles.dateText}>Image: &nbsp;</Text>
-                <View style={[styles.dateInputView, styles.imageDisplayView]}>
-                  {this.state.calData.imagePath ? (
-                    <Image
-                      source={{uri: this.state.image}}
-                      style={{height: '100%', width: '100%'}}
-                      resizeMode="contain"
-                    />
+                <View style={styles.dateView}>
+                  <Text style={styles.dateText}>Date: &nbsp;</Text>
+                  <View style={styles.dateInputView}>
+                    {this.state.newCal ? (
+                      <TextInput
+                        value={this.state.calData.date}
+                        style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
+                        placeholder="날짜"
+                        placeholderTextColor="#777"
+                        onChangeText={value =>
+                          this.onChangeInput('date', value)
+                        }
+                        editable={true}
+                      />
+                    ) : (
+                      // 새로운 다이어리 작성이 아닌 경우,
+                      <TextInput
+                        value={this.state.calData.date}
+                        style={{
+                          fontSize: 20,
+                          paddingTop: 0,
+                          paddingBottom: 0,
+                          color: 'gray',
+                        }}
+                        editable={false}
+                      />
+                    )}
+                  </View>
+                </View>
+                <View style={styles.TitleView}>
+                  <Text style={styles.dateText}>Title: &nbsp;</Text>
+                  <View style={styles.dateInputView}>
+                    {this.state.newCal ? (
+                      <TextInput
+                        value={this.state.calData.title}
+                        style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
+                        placeholder="제목"
+                        placeholderTextColor="#777"
+                        onChangeText={value =>
+                          this.onChangeInput('title', value)
+                        }
+                        editable={true}
+                      />
+                    ) : (
+                      // 새로운 다이어리 작성이 아닌 경우,
+                      <TextInput
+                        value={this.state.calData.title}
+                        style={{
+                          fontSize: 20,
+                          paddingTop: 0,
+                          paddingBottom: 0,
+                          color: 'gray',
+                        }}
+                        editable={false}
+                      />
+                    )}
+                  </View>
+                </View>
+                <View style={styles.TitleView}>
+                  <Text style={styles.dateText}>Start Time: &nbsp;</Text>
+                  <View style={styles.dateInputView}>
+                    {this.state.newCal ? (
+                      <TextInput
+                        value={this.state.calData.startTime}
+                        style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
+                        placeholder="시작 시간"
+                        placeholderTextColor="#777"
+                        onChangeText={value =>
+                          this.onChangeInput('startTime', value)
+                        }
+                        editable={true}
+                      />
+                    ) : (
+                      // 새로운 다이어리 작성이 아닌 경우,
+                      <TextInput
+                        value={this.state.calData.startTime}
+                        style={{
+                          fontSize: 20,
+                          paddingTop: 0,
+                          paddingBottom: 0,
+                          color: 'gray',
+                        }}
+                        editable={false}
+                      />
+                    )}
+                  </View>
+                </View>
+                <View style={styles.TitleView}>
+                  <Text style={styles.dateText}>End Time: &nbsp;</Text>
+                  <View style={styles.dateInputView}>
+                    {this.state.newCal ? (
+                      <TextInput
+                        value={this.state.calData.endTime}
+                        style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
+                        placeholder="종료 시간"
+                        placeholderTextColor="#777"
+                        onChangeText={value =>
+                          this.onChangeInput('endTime', value)
+                        }
+                        editable={true}
+                      />
+                    ) : (
+                      // 새로운 다이어리 작성이 아닌 경우,
+                      <TextInput
+                        value={this.state.calData.endTime}
+                        style={{
+                          fontSize: 20,
+                          paddingTop: 0,
+                          paddingBottom: 0,
+                          color: 'gray',
+                        }}
+                        editable={false}
+                      />
+                    )}
+                  </View>
+                </View>
+                <View style={styles.memoView}>
+                  <Text style={styles.dateText}>Memo: &nbsp;</Text>
+                  <View style={[styles.dateInputView, styles.memoInputView]}>
+                    <ScrollView>
+                      {this.state.newCal ? (
+                        <TextInput
+                          value={this.state.calData.memo}
+                          style={{
+                            fontSize: 20,
+                            paddingTop: 0,
+                            paddingBottom: 0,
+                          }}
+                          placeholder="메모"
+                          placeholderTextColor="#777"
+                          onChangeText={value =>
+                            this.onChangeInput('memo', value)
+                          }
+                          editable={true}
+                          multiline={true}
+                        />
+                      ) : (
+                        // 새로운 다이어리 작성이 아닌 경우,
+                        <TextInput
+                          value={this.state.calData.memo}
+                          style={{
+                            fontSize: 20,
+                            paddingTop: 0,
+                            paddingBottom: 0,
+                            color: 'gray',
+                          }}
+                          editable={false}
+                          multiline={true}
+                        />
+                      )}
+                    </ScrollView>
+                  </View>
+                </View>
+                <View style={styles.imageView}>
+                  <View style={{flex: 10, paddingRight: 15}}>
+                    <Text style={styles.dateText}>Image: &nbsp;</Text>
+                    <View
+                      style={[styles.dateInputView, styles.imageDisplayView]}>
+                      {this.state.calData.imagePath ? (
+                        <Image
+                          source={{uri: this.state.image}}
+                          style={{height: '100%', width: '100%'}}
+                          resizeMode="contain"
+                        />
+                      ) : null}
+                    </View>
+                  </View>
+                  <View style={{flex: 1, paddingTop: 30, paddingRight: 10}}>
+                    {this.state.newCal ? (
+                      <TouchableOpacity onPress={() => this.selectImage()}>
+                        <Image
+                          source={require('../../assets/images/photo.png')}
+                          resizeMode="contain"
+                          style={{
+                            height: 30,
+                          }}
+                        />
+                      </TouchableOpacity>
+                    ) : (
+                      <Image
+                        source={require('../../assets/images/photo.png')}
+                        resizeMode="contain"
+                        style={{
+                          height: 30,
+                          width: 30,
+                          opacity: 0.2,
+                        }}
+                      />
+                    )}
+                  </View>
+                </View>
+                <View style={styles.buttonView}>
+                  {!this.state.newCal ? (
+                    <View style={styles.buttonContainer}>
+                      <TouchableOpacity
+                        style={{fontSize: 15, padding: 5}}
+                        onPress={() => this.deleteData()}>
+                        <Text style={{color: '#fff'}}>삭제</Text>
+                      </TouchableOpacity>
+                    </View>
                   ) : null}
+                  {!this.state.newCal ? (
+                    <View style={styles.buttonContainer}>
+                      <TouchableOpacity
+                        style={{fontSize: 15, padding: 5}}
+                        onPress={() => this.updateData()}>
+                        <Text style={{color: '#fff'}}>수정</Text>
+                      </TouchableOpacity>
+                    </View>
+                  ) : null}
+                  <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                      style={{fontSize: 15, padding: 5}}
+                      onPress={() => this.createData()}>
+                      <Text style={{color: '#fff'}}>완료</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
+                <Spinner
+                  visible={this.state.isLoading}
+                  textContent={'캘린더 업로드..ing...'}
+                  overlayColor={'rgba(0,0,0,0.6)'}
+                  textStyle={{color: '#fff'}}
+                />
               </View>
-              <View style={{flex: 1, paddingTop: 30, paddingRight: 10}}>
-                {this.state.newCal ? (
-                  <TouchableOpacity onPress={() => this.selectImage()}>
-                    <Image
-                      source={require('../../assets/images/photo.png')}
-                      resizeMode="contain"
-                      style={{
-                        height: 30,
-                      }}
-                    />
-                  </TouchableOpacity>
-                ) : (
-                  <Image
-                    source={require('../../assets/images/photo.png')}
-                    resizeMode="contain"
-                    style={{
-                      height: 30,
-                      width: 30,
-                      opacity: 0.2,
-                    }}
-                  />
-                )}
-              </View>
-            </View>
-            <View style={styles.buttonView}>
-              {!this.state.newCal ? (
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                    style={{fontSize: 15, padding: 5}}
-                    onPress={() => this.deleteData()}>
-                    <Text>삭제</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : null}
-              {!this.state.newCal ? (
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                    style={{fontSize: 15, padding: 5}}
-                    onPress={() => this.updateData()}>
-                    <Text>수정</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : null}
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                  style={{fontSize: 15, padding: 5}}
-                  onPress={() => this.createData()}>
-                  <Text>완료</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <Spinner
-              visible={this.state.isLoading}
-              textContent={'캘린더 업로드..ing...'}
-              overlayColor={'rgba(0,0,0,0.6)'}
-              textStyle={{color: '#fff'}}
-            />
-          </View>
+            </SafeAreaView>
+          </ImageBackground>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     );
@@ -461,10 +485,24 @@ class CalEdit extends Component {
 }
 
 const styles = StyleSheet.create({
+  imageBg: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flexDirection: 'column',
-    backgroundColor: '#eee',
     height: '100%',
+  },
+  titleText: {
+    fontFamily: 'ShadowsIntoLight',
+    fontSize: 40,
+    color: '#8B0000',
+    // alignItems: 'flex-end',
+    // paddingTop: 30,
+    paddingLeft: 25,
+    textShadowColor: '#B87D64', // 'rgba(0, 0, 0, 0.75)'
+    textShadowOffset: {width: 4, height: 4},
+    textShadowRadius: 8,
   },
   indexView: {
     flex: 1,
@@ -494,16 +532,17 @@ const styles = StyleSheet.create({
   dateText: {
     fontFamily: 'DoHyeon-Regular',
     fontSize: 22,
-    fontWeight: 'bold',
   },
   dateInputView: {
     flex: 1,
+    backgroundColor: '#fff',
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 3,
     paddingBottom: 3,
     borderWidth: 1,
-    borderRadius: 1,
+    // borderRadius: 20,
+    borderColor: 'gray',
   },
   memoView: {
     flex: 2,
@@ -534,6 +573,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: 80,
     height: 30,
+    borderRadius: 100,
+    backgroundColor: '#55483E',
     marginLeft: 20,
     borderWidth: 1,
     alignItems: 'center',

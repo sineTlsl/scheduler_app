@@ -21,7 +21,7 @@
     "react": "18.0.0",
     "react-devtools": "^4.25.0",
     "react-native": "0.69.5",
-    "react-native-calendars": "^1.1288.2",
+    "react-native-calendars": "^1.1289.0",
     "react-native-gesture-handler": "^2.6.0",
     "react-native-image-picker": "^3.2.1",
     "react-native-loading-spinner-overlay": "^3.0.1",
