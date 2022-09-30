@@ -242,7 +242,7 @@ class CalEdit extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ImageBackground
             style={styles.imageBg}
-            source={require('../../assets/images/sky.jpg')}
+            source={require('../../assets/images/sky4.jpg')}
             blurRadius={5}
             imageStyle={{opacity: 0.5}}>
             <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
@@ -287,7 +287,7 @@ class CalEdit extends Component {
                       <TextInput
                         value={this.state.calData.title}
                         style={{fontSize: 20, paddingTop: 0, paddingBottom: 0}}
-                        placeholder="제목"
+                        placeholder="일정"
                         placeholderTextColor="#777"
                         onChangeText={value =>
                           this.onChangeInput('title', value)
@@ -541,7 +541,7 @@ const styles = StyleSheet.create({
     paddingTop: 3,
     paddingBottom: 3,
     borderWidth: 1,
-    // borderRadius: 20,
+    borderRadius: 20,
     borderColor: 'gray',
   },
   memoView: {
@@ -574,9 +574,8 @@ const styles = StyleSheet.create({
     width: 80,
     height: 30,
     borderRadius: 100,
-    backgroundColor: '#55483E',
+    backgroundColor: '#BA7279',
     marginLeft: 20,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

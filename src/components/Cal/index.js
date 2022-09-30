@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import TextTruncate from 'react-native-text-truncate';
 import {Calendar} from 'react-native-calendars';
+import {LocaleConfig} from 'react-native-calendars';
 
 import {connect} from 'react-redux';
 import {getCal} from '../../store/actions/cal_actions';
@@ -25,7 +26,58 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 
+LocaleConfig.locales['kr'] = {
+  monthNames: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'Décember',
+  ],
+  monthNamesShort: [
+    'Jan.',
+    'Feb.',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul.',
+    'Aug',
+    'Sept.',
+    'Oct.',
+    'Nov.',
+    'Dec.',
+  ],
+  dayNames: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
+  today: "Today'now",
+};
+
+LocaleConfig.defaultLocale = 'kr';
+
 class Cal extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     _markedDates: [],
+  //     marked: null,
+  //   };
+  // }
   state = {
     isAuth: true, // 로그인이 되어있는지 판단 여부
   };
@@ -87,20 +139,20 @@ class Cal extends Component {
               <View style={{height: 80}}>
                 {item.data.imagePath ? (
                   <View style={styles.indexView}>
-                    <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+                    {/* <Text style={{fontSize: 17, fontWeight: 'bold'}}>
                       # {index + 1}
                     </Text>
                     <Image
                       source={require('../../assets/images/photo.png')}
                       resizeMode={'contain'}
                       style={{width: 20, height: 20}}
-                    />
+                    /> */}
                   </View>
                 ) : (
                   <View style={{paddingTop: 7, paddingLeft: 7}}>
-                    <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+                    {/* <Text style={{fontSize: 17, fontWeight: 'bold'}}>
                       # {index + 1}
-                    </Text>
+                    </Text> */}
                   </View>
                 )}
 
@@ -116,7 +168,7 @@ class Cal extends Component {
                 {item.data.title ? (
                   <View style={styles.dateView}>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      제목: &nbsp;
+                      일정: &nbsp;
                     </Text>
                     <Text style={{fontSize: 16}}>{item.data.title}</Text>
                   </View>
@@ -153,6 +205,7 @@ class Cal extends Component {
           </TouchableOpacity>
         ))
       : null;
+
   checkNextID = Cals => {
     if (Cals.documents.length > 0) {
       let numOfArrElements = Cals.documents.length;
@@ -166,11 +219,10 @@ class Cal extends Component {
   };
 
   render() {
-    // this.headerStyle();
     return (
       <ImageBackground
         style={styles.imageBg}
-        source={require('../../assets/images/sky.jpg')}
+        source={require('../../assets/images/sky4.jpg')}
         blurRadius={5}
         imageStyle={{opacity: 0.5}}>
         <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
@@ -181,46 +233,105 @@ class Cal extends Component {
               justifyContent: 'space-between',
             }}>
             <Text style={styles.titleText}>SCHEDULER</Text>
-            <TouchableOpacity
-              style={{paddingRight: 15}}
-              onPress={() => {
-                auth
-                  .signOut()
-                  .then(() => {
-                    removeTokens(() => {
-                      this.props.navigation.navigate('SignIn');
+            {this.state.isAuth ? (
+              <TouchableOpacity
+                style={{paddingRight: 15}}
+                onPress={() => {
+                  auth
+                    .signOut()
+                    .then(() => {
+                      removeTokens(() => {
+                        this.props.navigation.navigate('SignIn');
+                      });
+                    })
+                    .catch(err => {
+                      alert('Logout Failed: ', err.message);
                     });
-                  })
-                  .catch(err => {
-                    alert('Logout Failed: ', err.message);
-                  });
-              }}>
-              <Image
-                source={require('../../assets/images/logout.png')}
-                resizeMode="contain"
-                style={{width: 23, height: 23}}
-              />
-            </TouchableOpacity>
+                }}>
+                <Image
+                  source={require('../../assets/images/logout.png')}
+                  resizeMode="contain"
+                  style={{width: 23, height: 23}}
+                />
+              </TouchableOpacity>
+            ) : null}
           </View>
-          <View style={styles.calendarView}>
-            <View style={styles.calendarRadius}>
-              <Calendar
-                style={{height: 350, justifyContent: 'center', marginTop: 15}}
-              />
-
-              <View style={styles.calendarButtonView}>
-                <TouchableOpacity style={styles.cancelButtonStyle}>
-                  <Text style={styles.cancelText}>CANCEL</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.okButtonStyle}
-                  // onPress={() => navigation.navigate('DayCheck', {selectedDate})}
-                >
-                  <Text style={styles.okText}>OK</Text>
-                </TouchableOpacity>
+          {this.state.isAuth ? (
+            <View style={styles.calendarView}>
+              <View style={styles.calendarRadius}>
+                <Calendar
+                  style={{height: 350, justifyContent: 'center', marginTop: 15}}
+                  theme={{
+                    backgroundColor: '#ffffff',
+                    calendarBackground: '#ffffff',
+                    todayTextColor: '#57B9BB', // 57B9BB
+                    dayTextColor: '#222222',
+                    textDisabledColor: '#d9e1e8',
+                    monthTextColor: '#55483E', // 57B9BB
+                    arrowColor: '#55483E', // 57B9BB
+                    textDayFontWeight: '300',
+                    textMonthFontWeight: 'bold',
+                    textDayHeaderFontWeight: '500',
+                    textDayFontSize: 16,
+                    textMonthFontSize: 20,
+                    selectedDayBackgroundColor: '#55483E', // 57B9BB
+                    selectedDayTextColor: 'white',
+                    textDayHeaderFontSize: 10,
+                  }}
+                  minDate={this.state.today} // minDate={'1996-05-10'}
+                  maxDate={'2030-05-30'}
+                  monthFormat={'MMMM, yyyy'}
+                  markedDates={{
+                    [this.state.selectedDate]: {
+                      selected: true,
+                      marked: true,
+                      selectedColor: '#55483E',
+                    },
+                  }}
+                  scrollEnabled={true}
+                  horizontal={true}
+                  showScrollIndicator={true}
+                  disableMonthChange={true}
+                  onDayPress={day => {
+                    this.setState({
+                      selectedDate:
+                        day.year +
+                        '-' +
+                        day.dateString.split('-')[1] +
+                        '-' +
+                        day.dateString.split('-')[2],
+                    });
+                  }}
+                />
+                <View style={styles.calendarButtonView}>
+                  <TouchableOpacity
+                    style={styles.cancelButtonStyle}
+                    onPress={() =>
+                      this.setState({
+                        selectedDate: '',
+                      })
+                    }>
+                    <Text style={styles.cancelText}>CANCEL</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.okButtonStyle}
+                    onPress={() => this.props.navigation.navigate('CalDate')}
+                    // onPress={() => {
+                    //   // 새롭게 작성된 데이터를 넘겨줌
+                    //   this.props.navigation.push('CalEdit', {
+                    //     newCal: true,
+                    //     index: this.props.Cals.documents.length, // length를 이용하면 배열의 개수를 알 수 있음
+                    //     id: this.checkNextID(this.props.Cals),
+                    //     userId: this.props.User.auth.userId,
+                    //   });
+                    // }}
+                  >
+                    <Text style={styles.okText}>OK</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
+          ) : null}
           <View>
             {this.state.isAuth ? (
               <ScrollView>
@@ -229,9 +340,9 @@ class Cal extends Component {
                 </View>
               </ScrollView>
             ) : (
-              <View
+              <SafeAreaView
                 style={{
-                  height: '100%',
+                  height: '90%',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
@@ -244,7 +355,7 @@ class Cal extends Component {
                   color="#296592"
                   onPress={() => this.props.navigation.navigate('SignIn')}
                 />
-              </View>
+              </SafeAreaView>
             )}
             {this.state.isAuth ? (
               <TouchableOpacity
@@ -282,18 +393,15 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   CalContainer: {
-    backgroundColor: '#fff',
-    margin: 10,
+    backgroundColor: '#eee',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 15,
     shadowColor: '#cccccc',
     shadowOffset: {width: 3, height: 3},
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    borderRadius: 30,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderRadius: 20,
   },
   titleText: {
     fontFamily: 'ShadowsIntoLight',
@@ -316,7 +424,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   calendarRadius: {
-    backgroundColor: '#55483E', // 57B9BB
+    backgroundColor: '#3e7caa', // 57B9BB
     // alignItems: "center",
     width: '100%',
     borderRadius: 10,
@@ -358,7 +466,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#55483E', // 57B9BB
+    backgroundColor: '#738BAD', // 57B9BB //55483E
   },
   okText: {
     fontSize: 14,
@@ -378,8 +486,8 @@ const styles = StyleSheet.create({
   dateView: {
     flexDirection: 'row',
     alignItems: 'baseline', // 밑줄 정렬
-    paddingTop: 7,
-    paddingLeft: 7,
+    paddingTop: 10,
+    paddingLeft: 30,
   },
 });
 

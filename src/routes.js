@@ -5,8 +5,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // Screens import
 import SignIn from './components/auth';
+
 import Cal from './components/Cal';
 import CalEdit from './components/Cal/CalEdit';
+import CalDate from './components/Cal/CalDate';
+
 import TodoList from './components/TodoList';
 import TodoEdit from './components/TodoList/TodoEdit';
 import LogoTitle from './utils/logoTitle';
@@ -79,11 +82,8 @@ const CalNav = () => {
   return (
     <CalStack.Navigator screenOptions={{headerShown: false}}>
       <CalStack.Screen name="Cal" component={Cal} />
-      <CalStack.Screen
-        name="CalEdit"
-        component={CalEdit}
-        options={headerConfig}
-      />
+      <CalStack.Screen name="CalEdit" component={CalEdit} />
+      <CalStack.Screen name="CalDate" component={CalDate} />
     </CalStack.Navigator>
   );
 };
