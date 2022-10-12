@@ -293,6 +293,7 @@ class Cal extends Component {
                   showScrollIndicator={true}
                   disableMonthChange={true}
                   onDayPress={day => {
+                    // 선택한 날짜 마크표시
                     this.setState({
                       selectedDate:
                         day.year +
@@ -315,7 +316,16 @@ class Cal extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.okButtonStyle}
-                    onPress={() => this.props.navigation.navigate('CalDate')}
+                    onPress={() => {
+                      this.props.navigation.navigate('CalDate', {
+                        selectDay: this.state.selectedDate,
+                      });
+                    }}
+                    //   (() => this.props.navigation.navigate('CalDate'),
+                    //   {
+                    //     selectDay: this.state.selectedDate,
+                    //   })
+                    // }
                     // onPress={() => {
                     //   // 새롭게 작성된 데이터를 넘겨줌
                     //   this.props.navigation.push('CalEdit', {

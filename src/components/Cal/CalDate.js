@@ -11,8 +11,68 @@ import {
   Image,
 } from 'react-native';
 
+import {connect} from 'react-redux';
+import {getCal} from '../../store/actions/cal_actions';
+
+import {getTokens, setTokens} from '../../utils/misc';
+
 class CalDate extends Component {
+  // 앱이 렌더링 될 때마다 호출되게 함
+  // 이렇게 하면 store가 reducer를 실행시키고 리듀서에서 state 업데이트가 이루어짐
+  componentDidMount() {
+    // this.props.dispatch(
+    //   getCal(
+    //     getTokens(value => {
+    //       // value 값은 배열로 되어있는데 그 값이 Null이라면, 로그인 화면을 보여줌
+    //       if (value[1][1] === null) {
+    //         this.manageState(false);
+    //       } else {
+    //         // value[1][1]에 값이 들어가 있다면, autoSignIn() 함수 호출
+    //         this.props.dispatch(autoSignIn(value[2][1])).then(() => {
+    //           // 유저의 auth의 토큰이 없다면, manageState(false)로 전달
+    //           if (!this.props.User.auth.token) {
+    //             th is.manageState(false);
+    //           } else {
+    //             // 유저의 auth의 토큰이 있다면, 로그인이 된 상태라는 걸 인지
+    //             setTokens(this.props.User.auth, () => {
+    //               this.manageState(true);
+    //               this.props.dispatch(getCal(this.props.User));
+    //             });
+    //           }
+    //         });
+    //       }
+    //     }),
+    //   ),
+    // );
+  }
+
+  // renderCal = (Cals) =>
+  //   Cals.documents? // 7개의 데이터를 각각 접근하고, 각각 데이터 출력
+  //   Cals.documents.map((item, index) => (
+  //     <View>
+  //       <Text style={styles.timeText}>{item.data.date}</Text>
+  //     </View>
+  //   )) : null;
+
   render() {
+    const selectDay = this.props.route.params.selectDay; // 데이터 전달 받기
+    const selectDate = selectDay.split('-'); // 문자열 분리
+
+    const selectMonth = () => {
+      if (selectDate[1] == '01') return 'January';
+      else if (selectDate[1] == '02') return 'February';
+      else if (selectDate[1] == '03') return 'March';
+      else if (selectDate[1] == '04') return 'April';
+      else if (selectDate[1] == '05') return 'May';
+      else if (selectDate[1] == '06') return 'June';
+      else if (selectDate[1] == '07') return 'July';
+      else if (selectDate[1] == '08') return 'August';
+      else if (selectDate[1] == '09') return 'September';
+      else if (selectDate[1] == '10') return 'October';
+      else if (selectDate[1] == '11') return 'November';
+    };
+
+    console.log('selectDay: ' + selectDay);
     return (
       <ImageBackground
         style={styles.imageBg}
@@ -23,7 +83,9 @@ class CalDate extends Component {
           <Text style={styles.titleText}>SCHEDULER</Text>
           <View style={styles.container}>
             <View style={styles.radiusCon}>
-              <Text style={styles.dayText}>September, 23, 2022</Text>
+              <Text style={styles.dayText}>
+                {selectMonth()}, {selectDate[2]}, {selectDate[0]}
+              </Text>
               <View style={styles.radiusView}>
                 <View
                   style={{
@@ -121,4 +183,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalDate;
+function mapStateToProps(state) {
+  return {
+    Cals: state.Cals,
+    User: state.User,
+  };
+}
+
+export default connect(mapStateToProps)(CalDate);
