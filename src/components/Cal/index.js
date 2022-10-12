@@ -80,6 +80,7 @@ class Cal extends Component {
   // }
   state = {
     isAuth: true, // 로그인이 되어있는지 판단 여부
+    selectedDate: '',
   };
 
   /* state 값을 갱신해주는 메소드 */

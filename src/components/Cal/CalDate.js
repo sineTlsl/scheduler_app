@@ -17,6 +17,18 @@ import {getCal} from '../../store/actions/cal_actions';
 import {getTokens, setTokens} from '../../utils/misc';
 
 class CalDate extends Component {
+  constructor(props) {
+    super(props);
+
+    selectDay = this.props.route.params.selectDay; // 데이터 전달 받기
+  }
+
+  /* state 값을 갱신해주는 메소드 */
+  manageState = isAuth => {
+    this.setState({
+      isAuth,
+    });
+  };
   // 앱이 렌더링 될 때마다 호출되게 함
   // 이렇게 하면 store가 reducer를 실행시키고 리듀서에서 state 업데이트가 이루어짐
   componentDidMount() {
@@ -31,7 +43,7 @@ class CalDate extends Component {
     //         this.props.dispatch(autoSignIn(value[2][1])).then(() => {
     //           // 유저의 auth의 토큰이 없다면, manageState(false)로 전달
     //           if (!this.props.User.auth.token) {
-    //             th is.manageState(false);
+    //             this.manageState(false);
     //           } else {
     //             // 유저의 auth의 토큰이 있다면, 로그인이 된 상태라는 걸 인지
     //             setTokens(this.props.User.auth, () => {
@@ -46,14 +58,48 @@ class CalDate extends Component {
     // );
   }
 
-  // renderCal = (Cals) =>
-  //   Cals.documents? // 7개의 데이터를 각각 접근하고, 각각 데이터 출력
-  //   Cals.documents.map((item, index) => (
-  //     <View>
-  //       <Text style={styles.timeText}>{item.data.date}</Text>
-  //     </View>
-  //   )) : null;
+  renderCal = (Cals, User) =>
+    Cals.documents // 7개의 데이터를 각각 접근하고, 각각 데이터 출력
+      ? Cals.documents.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => {
+              this.props.navigation.push('CalEdit', {
+                // 넘어가는 데이터(파라메타)
+                newCal: false,
+                calData: item,
+                index: index,
+                id: item.data.id,
+                userId: User.auth.userId,
+              });
+            }}>
+            {item.data.date === selectDay ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginBottom: 10,
+                }}>
+                <Text style={styles.timeText}>
+                  {item.data.startTime} ~ {item.data.endTime}
+                </Text>
+                <Text style={styles.timeText}>{item.data.title}</Text>
+              </View>
+            ) : null}
+          </TouchableOpacity>
+        ))
+      : null;
+  checkNextID = Cals => {
+    if (Cals.documents.length > 0) {
+      let numOfArrElements = Cals.documents.length;
+      let lastCalIdx = Number(numOfArrElements) - 1;
+      let nextCalID = Cals.documents[lastCalIdx].data.id + 1; // 배열의 인덱스를 접근해서 아이디값을 가져오고 + 1을 더함
 
+      return nextCalID;
+    } else {
+      return 0;
+    }
+  };
   render() {
     const selectDay = this.props.route.params.selectDay; // 데이터 전달 받기
     const selectDate = selectDay.split('-'); // 문자열 분리
@@ -87,17 +133,19 @@ class CalDate extends Component {
                 {selectMonth()}, {selectDate[2]}, {selectDate[0]}
               </Text>
               <View style={styles.radiusView}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginBottom: 10,
-                  }}>
-                  <Text style={styles.timeText}>8:00 ~ 23:30</Text>
-                  <Text style={styles.timeText}>알바</Text>
-                </View>
+                {this.renderCal(this.props.Cals, this.props.User)}
                 <View style={styles.addIconView}>
-                  <TouchableOpacity style={styles.inputCalendar}>
+                  <TouchableOpacity
+                    style={styles.inputCalendar}
+                    onPress={() => {
+                      // 새롭게 작성된 데이터를 넘겨줌
+                      this.props.navigation.push('CalEdit', {
+                        newCal: true,
+                        index: this.props.Cals.documents.length, // length를 이용하면 배열의 개수를 알 수 있음
+                        id: this.checkNextID(this.props.Cals),
+                        userId: this.props.User.auth.userId,
+                      });
+                    }}>
                     <Image
                       source={require('../../assets/images/edit_calendar.png')}
                       style={{tintColor: '#fff', width: 50, height: 50}}
