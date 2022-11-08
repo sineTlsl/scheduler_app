@@ -36,7 +36,7 @@ firebaseLogin = async (email, password) => {
     let user = await auth.signInWithEmailAndPassword(email, password); // 로그인 정보가 담겨있음
     console.warn('User: ', user);
   } catch (err) {
-    console.warn('Error: ', error);
+    // console.warn('Error: ', error);
   }
 };
 

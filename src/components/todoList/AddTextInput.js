@@ -8,7 +8,7 @@ const Input = styled.TextInput.attrs(() => ({
 }))`
   font-family: 'IBMPlexSansKR-Regular';
   font-size: 15px;
-  height: 40px;
+  height: 45px;
   padding-left: 10px;
 `;
 

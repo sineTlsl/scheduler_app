@@ -11,7 +11,6 @@ import CalEdit from './components/Cal/CalEdit';
 import CalDate from './components/Cal/CalDate';
 
 import TodoList from './components/TodoList';
-import TodoEdit from './components/TodoList/TodoEdit';
 import LogoTitle from './utils/logoTitle';
 import Loading from './components/auth/loading';
 
@@ -96,11 +95,6 @@ const TodoNav = () => {
         name="Todo"
         component={TodoList}
         options={headerConfig_}
-      />
-      <TodoStack.Screen
-        name="TodoEdit"
-        component={TodoEdit}
-        options={headerConfig}
       />
     </TodoStack.Navigator>
   );

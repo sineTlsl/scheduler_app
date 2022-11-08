@@ -36,6 +36,7 @@ class Loading extends Component {
     });
   };
   render() {
+    console.disableYellowBox = true;
     return (
       <View
         style={{

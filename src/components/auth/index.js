@@ -43,6 +43,7 @@ class Auth extends Component {
   }
 
   render() {
+    console.disableYellowBox = true;
     return (
       <ScrollView style={styles.container}>
         <View>

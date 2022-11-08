@@ -233,6 +233,7 @@ class CalEdit extends Component {
   };
 
   render() {
+    console.disableYellowBox = true;
     return (
       <KeyboardAvoidingView
         style={{flex: 1}}

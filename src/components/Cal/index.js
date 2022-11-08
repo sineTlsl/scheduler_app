@@ -220,6 +220,7 @@ class Cal extends Component {
   };
 
   render() {
+    console.disableYellowBox = true;
     return (
       <ImageBackground
         style={styles.imageBg}

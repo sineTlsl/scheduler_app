@@ -40,9 +40,9 @@ const Todo = ({navigation}) => {
 
   /* 편하게 관리할 수 있는 임시 데이터 */
   const conData = {
-    1: {id: 1, text: 'Hi', completed: false},
-    2: {id: 2, text: 'I am', completed: true},
-    3: {id: 3, text: 'Sieun', completed: false},
+    1: {id: 1, text: '졸업작품', completed: false},
+    2: {id: 2, text: '알바', completed: true},
+    3: {id: 3, text: '우산 챙기기', completed: false},
   };
   const [tasks, setTasks] = useState(conData); // 할 일 목록을 관리하는 상태변수
 

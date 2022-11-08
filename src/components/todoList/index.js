@@ -17,18 +17,7 @@ const {height, width} = Dimensions.get('window');
 
 import Todo from './Todo';
 
-import {connect} from 'react-redux';
-import {getTodo} from '../../store/actions/todo_actions';
-
-import {database} from '../../utils/misc_todo';
-
 class TodoList extends Component {
-  // 앱이 렌더링 될 때마다 호출되게 함
-  // 이렇게 하면 store가 reducer를 실행시키고 리듀서에서 state 업데이트가 이루어짐
-  componentDidMount() {
-    this.props.dispatch(getTodo());
-  }
-
   render() {
     return (
       <ImageBackground
@@ -69,10 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state) {
-  return {
-    Todos: state.Todos,
-  };
-}
-
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;

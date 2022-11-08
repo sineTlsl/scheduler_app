@@ -7,6 +7,11 @@ import {RootNav} from './routes';
 
 class App extends Component {
   render() {
+    if (process.env.NODE_ENV === 'production') {
+      console.log = function no_console() {};
+      console.warn = function no_console() {};
+    }
+    console.warn = function () {};
     return (
       <NavigationContainer>
         <RootNav />
