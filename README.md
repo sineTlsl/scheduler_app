@@ -3,7 +3,7 @@
 
 # APP Image
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/97720335/200540409-3423c968-3c0a-487a-b6ea-2e6c30a2177e.png" height="300" /><br>
+  <img src="https://user-images.githubusercontent.com/97720335/200540409-3423c968-3c0a-487a-b6ea-2e6c30a2177e.png" height="300" /> &nbsp;
   <img src="https://user-images.githubusercontent.com/97720335/200540434-c9594b5c-a502-4fb0-9dcb-2f263c2baff1.png" height="300" />
   <img src="https://user-images.githubusercontent.com/97720335/200540601-5262e530-880c-46d2-b909-acaa1b6bd070.png" height="300" />
   <img src="https://user-images.githubusercontent.com/97720335/200540442-7b034c52-7940-4c02-bfbb-7460b840b4a5.png" height="300" />
