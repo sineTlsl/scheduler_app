@@ -1,6 +1,7 @@
 # SCHEDULER APP
 React Native를 활용하여 Calendar 및 Todo List를 관리할 수 있는 앱을 제작하였다. 
-FireBase를 사용하여 DB를 관리하고, 실시간으로 데이터를 MAGIC MIRROR^2에 전달해 줌으로써 손쉽게 확인이 가능하다.
+FireBase를 사용하여 DB를 관리하고, 실시간으로 데이터를 MAGIC MIRROR에 전달해 줌으로써 손쉽게 확인이 가능하다.
+
 <img src="https://user-images.githubusercontent.com/97720335/192958458-3ac784ff-9e37-4b94-b31f-c24ab05035f0.png" height="250" />
 
 # APP Image
