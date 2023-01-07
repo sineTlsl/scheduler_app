@@ -8,14 +8,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB4WHnlC3wFBnvOB4iuBDYz7TYLIMXJq_U',
-  authDomain: 'scheduler-app-df3b5.firebaseapp.com',
-  databaseURL:
-    'https://scheduler-app-df3b5-default-rtdb.asia-southeast1.firebasedatabase.app',
-  projectId: 'scheduler-app-df3b5',
-  storageBucket: 'scheduler-app-df3b5.appspot.com',
-  messagingSenderId: '784333974342',
-  appId: '1:784333974342:web:b33a409c9bf5ef209e1347',
 };
 
 firebase.initializeApp(firebaseConfig);
